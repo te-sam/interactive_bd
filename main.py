@@ -30,9 +30,14 @@ def run_command(command: str, *args) -> None:
 def main() -> None:
     """Основная функция."""
     while True:
-        request = input("> ").strip().split()
+        try:
+            request = input("> ").strip().split()
+        except EOFError:
+            break
+
         if not request:
             continue
+        
         try:
             run_command(*request)
         except SystemExit:
