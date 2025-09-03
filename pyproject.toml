@@ -1,0 +1,59 @@
+[project]
+name = "bd-interact"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "te-sam",email = "art.samohwalov@yandex.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ruff (>=0.12.11,<0.13.0)",
+    "pytest (>=8.4.1,<9.0.0)",
+]
+
+[tool.poetry]
+packages = [{include = "bd_interact", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 79 # Максимальная длина строки кода (по стандарту PEP 8 — 79 символов)
+target-version = "py313"  # Целевая версия Python
+show-fixes = true  # Показывать исправления при форматировании кода
+
+[lint]
+preview = true
+select = ["E", "F", "I", "C90"]  # Выбирает категории правил, которые будут проверяться
+ignore = [
+    "W505",   # Игнорировать правило W505, так как длина строки проверяется в E501 (pycodestyle): длина строки документации превышает максимум
+    "RUF001", # Игнорировать правило RUF001 (Ruff): неоднозначные символы Unicode в строках
+    "RUF002", # Игнорировать правило RUF002 (Ruff): неоднозначные символы Unicode в идентификаторах
+    "PLR1722",# Игнорировать правило PLR1722 (pylint): использование `sys.exit()` вместо `raise SystemExit`
+    "T201",   # Игнорировать правило T201 (flake8-print): использование функции `print`
+    "S311"    # Игнорировать правило S311 (flake8-bandit): использование небезопасного генератора случайных чисел
+]  # Игнорируемые правила
+
+extend-select = ["E", "W", "F", "I"]  # Добавляет дополнительные категории правил
+
+[format]
+docstring-code-format = true  # Применять форматирование кода внутри docstring'ов
+skip-magic-trailing-comma = false  # Включает автоматическое добавление запятой
+
+[lint.pycodestyle]
+max-doc-length = 79  # Максимальная длина строки в docstring'ах
+
+[lint.pydocstyle]
+convention = "google"  # Использовать стиль Google для оформления docstring'ов
+
+[lint.isort]
+known-first-party = ["my_project"]  # Определяет модули проекта
+lines-after-imports = 2  # Добавляет 2 пустые строки после импортов
+combine-as-imports = true  # Объединяет импорты с `as` в одну строку
+split-on-trailing-comma = true  # запятая после последнего элемента
+force-wrap-aliases = true       # переносить даже если есть `as`
+force-single-line = false       # отключает принудительную упаковку в одну строку
