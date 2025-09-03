@@ -73,11 +73,11 @@ NULL
 1. Склонируйте репозиторий:
 
 ```bash
-git clone <URL_репозитория>
-cd <папка_проекта>
+git clone https://github.com/te-sam/interactive_bd.git
+cd interactive_bd
 ```
 
-2. Убедитесь, что установлен Python 3.13+.
+2. Убедитесь, что установлен Python 3.12+.
 
 3. Установите зависимости
 ```bash
